@@ -239,7 +239,7 @@ function levelup(){
         octoStats.level ++;
         octoStats.exp = 0;
         $('.currnet-level').text(`Level:${octoStats.level}`)
-        $('.current-exp').text(`Exp: ${octoStats.exp}`)
+        $('.current-exp').text(`Exp: ${octoStats.exp}`);
        
     }
 }
