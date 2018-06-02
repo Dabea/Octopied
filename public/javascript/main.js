@@ -34,7 +34,7 @@ const resources ={
     dirt: results.resourcesConfig.dirt,
     rock: results.resourcesConfig.rocks,
     steel: results.resourcesConfig.steel,
-    house:4
+    house: results.resourcesConfig.houses
 };
 const octoStats = {
     level: results.statisticsConfig.level,
@@ -600,5 +600,4 @@ theHunger();
 });
 
 });
-
 
