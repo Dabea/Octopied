@@ -118,6 +118,25 @@ const babby = {
     }
 }
 
+function updateDB(resources, octoStats, collectorStatus){
+    $.ajax("/game", {
+        type: "PUT",
+        data: {
+            resources: resources,
+            octoStats: octoStats,
+            collectorStatus: collectorStatus
+        }
+    }).then(function(){
+        console.log('Your progress has been saved!');
+    }).catch(function(err){
+        console.log(`Oh boy, it broke: ${err}`);
+    });
+};
+
+$('#save-progress').click(function(){
+    updateDB(resources, octoStats, collectorStatus)
+});
+
 
 function startGivenCollector(resource){
     switch(resource){
