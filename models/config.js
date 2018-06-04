@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         experience_growth_modifier: {
             type: DataTypes.INTEGER,
-            defaultValue: 5
+            defaultValue: 20
         },
         dirt_trade_cost: {
             type: DataTypes.INTEGER,
@@ -60,6 +60,79 @@ module.exports = function(sequelize, DataTypes) {
         shark_resource_difficulty_rank: {
             type: DataTypes.INTEGER,
             defaultValue: 6
+        },
+        // RUL = Resource Upgrade List
+        house_RUL_rank_one: {
+            type: DataTypes.STRING,
+            defaultValue: 'dirt'
+        },
+        house_RUL_rank_two: {
+            type: DataTypes.STRING,
+            defaultValue: 'rock'
+        },
+        house_RUL_rank_three: {
+            type: DataTypes.STRING,
+            defaultValue: 'steel'
+        },
+        heart_RUL_rank_one: {
+            type: DataTypes.STRING,
+            defaultValue: 'worm'
+        },
+        heart_RUL_rank_two: {
+            type: DataTypes.STRING,
+            defaultValue: 'fish'
+        },
+        heart_RUL_rank_three: {
+            type: DataTypes.STRING,
+            defaultValue: 'shark'
+        },
+        food_RUL_rank_one: {
+            type: DataTypes.STRING,
+            defaultValue: 'dirt'
+        },
+        food_RUL_rank_two: {
+            type: DataTypes.STRING,
+            defaultValue: 'rock'
+        },
+        food_RUL_rank_three: {
+            type: DataTypes.STRING,
+            defaultValue: 'steel'
+        },
+        attack_RUL_rank_one: {
+            type: DataTypes.STRING,
+            defaultValue: 'rock'
+        },
+        attack_RUL_rank_two: {
+            type: DataTypes.STRING,
+            defaultValue: 'steel'
+        },
+        attack_RUL_rank_three: {
+            type: DataTypes.STRING,
+            defaultValue: 'steel'
+        },
+        defense_RUL_rank_one: {
+            type: DataTypes.STRING,
+            defaultValue: 'dirt'
+        },
+        defense_RUL_rank_two: {
+            type: DataTypes.STRING,
+            defaultValue: 'rock'
+        },
+        defense_RUL_rank_three: {
+            type: DataTypes.STRING,
+            defaultValue: 'steel'
+        },
+        baby_RUL_rank_one: {
+            type: DataTypes.STRING,
+            defaultValue: 'worm'
+        },
+        baby_RUL_rank_two: {
+            type: DataTypes.STRING,
+            defaultValue: 'fish'
+        },
+        baby_RUL_rank_three: {
+            type: DataTypes.STRING,
+            defaultValue: 'shark'
         }
     });
     return Config;

@@ -79,3 +79,90 @@ body {
   .side-bar{
     float: left;
   }
+
+  .monster{
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -450px -345px;
+  }
+
+  .monster-13{
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -450px -345px;
+  }
+
+  .monster-12{
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -300px -345px;
+  }
+
+  .monster-11{
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  0 -355px;
+  }
+
+  .monster-10{
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -150px -355px;
+  }
+  .monster-9{
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -150px -355px;
+  }
+
+  .monster-8{
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  0 -180px;
+  }
+  
+  .monster-7{
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -150px -180px;
+  }
+
+  .monster-6{
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -300px -180px;
+  }
+
+  .monster-5{
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -450px -180px;
+  }
+
+  .monster-4{
+    width:150px;
+    height:180px;
+    background:  url('/../images/monster.png')  -450px 0;
+
+  }
+
+  .monster-3{
+    width:150px;
+    height:180px;
+    background:  url('/../images/monster.png')  -300px 0;
+
+  }
+
+  .monster-2{
+    width:150px;
+    height:180px;
+    background:  url('/../images/monster.png')  -150px 0;
+
+  }
+
+  .monster-1 {
+    width:150px;
+    height:180px;
+    background:  url('/../images/monster.png')  0 0;
+
+  }

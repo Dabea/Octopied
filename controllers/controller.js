@@ -46,7 +46,7 @@ module.exports = function(app, passport, db){
             }
         }).then(function(user){
             if (!user) {
-                req.flash('error', 'Password reset token is invalid or has expired.');
+                req.flash('error', 'Password reset token is invalid or has expired');
             }
             res.render('signin', {
                 signin: false,
@@ -57,7 +57,7 @@ module.exports = function(app, passport, db){
                 token: req.params.token
             });
         }).catch(function(){
-            req.flash('error', 'Something went wrong accessing the database.');
+            req.flash('error', 'Something went wrong accessing the database');
         });
     });
 
@@ -119,7 +119,7 @@ module.exports = function(app, passport, db){
 
     app.get('/logout', function(req, res){
         req.session.destroy(function(err){
-            res.redirect('/');
+            res.redirect('/signin');
         });
     });
 
@@ -144,7 +144,7 @@ module.exports = function(app, passport, db){
                     } 
                 }).then(function(user){
                     if (!user) {
-                        req.flash('error', 'No account with that email address exists.');
+                        req.flash('error', 'No account with that email address exists');
                         return res.redirect('/forgot');
                     }
                     Users.update({
@@ -157,7 +157,7 @@ module.exports = function(app, passport, db){
                     }).then(function(){
                         done(null, token, user);
                     }).catch(function(){
-                        req.flash('error', 'Something went wrong accessing the database.');
+                        req.flash('error', 'Something went wrong accessing the database');
                         res.redirect('/forgot');
                     });
                 });
@@ -181,14 +181,14 @@ module.exports = function(app, passport, db){
                 };
                 mailer.sendMail(mailOptions, function(err, res){
                     if (!err) {
-                        req.flash('info', 'An e-mail has been sent to ' + user.dataValues.email + ' with further instructions.');
+                        req.flash('info', 'An e-mail has been sent to ' + user.dataValues.email + ' with further instructions');
                     }
                     done(err, 'done');
                 });
             }
         ], function(err){
             if (err) {
-                req.flash('error', 'Sorry, something went wrong.');
+                req.flash('error', 'Sorry, something went wrong');
                 res.redirect('/forgot');
             } else {
                 res.redirect('/forgot');
@@ -209,7 +209,7 @@ module.exports = function(app, passport, db){
                     }
                 }).then(function(user){
                     if (!user) {
-                        req.flash('error', 'Password reset token is invalid or has expired.');
+                        req.flash('error', 'Password reset token is invalid or has expired');
                         res.render('signin', {
                             signin: false,
                             forgot: false,
@@ -227,7 +227,7 @@ module.exports = function(app, passport, db){
                         }).then(function(){
                             done(null, user)
                         }).catch(function(){
-                            req.flash('error', 'Something went wrong accessing the database.');
+                            req.flash('error', 'Something went wrong accessing the database');
                             res.render('signin', {
                                 signin: false,
                                 forgot: false,
@@ -238,7 +238,7 @@ module.exports = function(app, passport, db){
                         });
                     }
                 }).catch(function(){
-                    req.flash('error', 'Something went wrong accessing the database.');
+                    req.flash('error', 'Something went wrong accessing the database');
                     res.render('signin', {
                         signin: false,
                         forgot: false,
@@ -265,14 +265,14 @@ module.exports = function(app, passport, db){
                 };
                 mailer.sendMail(mailOptions, function(err, res) {
                     if (!err) {
-                        req.flash('info', 'Success! Your password has been changed.');
+                        req.flash('info', 'Success! Your password has been changed');
                     }
                     done(err, 'done');
                 });
             }
         ], function(err) {
             if (err) {
-                req.flash('error', 'Something went wrong with sending a confirmation email.');
+                req.flash('error', 'Something went wrong with sending a confirmation email');
             }
             res.redirect('/signin');
         });
@@ -290,6 +290,7 @@ module.exports = function(app, passport, db){
             level: parseInt(req.body.octoStats.level),
             experience: parseInt(req.body.octoStats.exp),
             prestige: parseInt(req.body.octoStats.prestidge),
+            stage: parseInt(req.body.octoStats.stage),
             food_proficiency: parseInt(req.body.octoStats.proficiency.food),
             gather_proficiency: parseInt(req.body.octoStats.proficiency.gather),
             attack_proficiency: parseInt(req.body.octoStats.proficiency.attack),
@@ -305,8 +306,13 @@ module.exports = function(app, passport, db){
             shark_collector_status: (req.body.collectorStatus.shark === 'true') ? true : false,
         };
         const resources = {
+            food: parseInt(req.body.resources.points),
             hearts: parseInt(req.body.resources.hearts),
             babies: parseInt(req.body.resources.babbies),
+            babies_active: parseInt(req.body.resources.babbiesActive),
+            babies_available: parseInt(req.body.resources.babbiesAvailable),
+            babies_hunger: parseInt(req.body.resources.babbiesHunger),
+            babies_level: parseInt(req.body.resources.babbiesLevel),
             worms: parseInt(req.body.resources.worm),
             fish: parseInt(req.body.resources.fish),
             sharks: parseInt(req.body.resources.shark),
