@@ -22,18 +22,18 @@ body {
   animation:1s  infinite linear;
 }
 
-.resources{
+.resources {
   color:white;
   list-style: none;
 }
 
-.resources ul{
+.resources ul {
   list-style: none;
 }
 
 
   /**************** Stage Backgrounds *************/
-.overlay{
+.overlay {
     position:fixed;
     background:url('/../images/Metallic-Blue24.jpg');
     animation:100s scroll infinite linear;
@@ -46,13 +46,13 @@ body {
   }
 
   /**************** Animations (KeyFrames) ****************/
-  @keyframes scroll{
+  @keyframes scroll {
     100%{
       background-position:0px 3000px;
     }
   }
 
-  @keyframes beat{
+  @keyframes beat {
     0%{
       font-size:3em;
     }
@@ -64,7 +64,7 @@ body {
     }
   }
 
-  @keyframes beat{
+  @keyframes beat {
     0%{
       font-size:3em;
     }
@@ -75,65 +75,205 @@ body {
       font-size:3em;
     }
   }
+
+  @keyframes slash-animation-1 {
+    /* 0%{
+      opacity: 0;
+      background-position:  -960px -540px;
+    }
+    50%{
+      background-position:  -960px -540px;
+      opacity: 0;
+    } */
+    /* 51%{
+      background-position:  -960px -540px;
+      opacity: 1;
+    } */
+    100%{
+      background-position:  -960px -540px;
+      opacity: 1;
+    }
+    
+  }
+
+  @keyframes slash-animation-2 {
+    0%{
+      opacity: 0;
+      background-position:  -960px 0px;
+    }
+    50%{
+      background-position:  -960px 0px;
+      opacity: 0;
+    }
+    51%{
+      background-position:  -960px 0px;
+      opacity: 1;
+    }
+    100%{
+      background-position: 0 0px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes slash-animation-3 {
+    0%{
+      opacity: 0;
+      background-position:  -960px -180px;
+    }
+    50%{
+      background-position:  -960px -180px;
+      opacity: 0;
+    }
+    51%{
+      background-position:  -960px -180px;
+      opacity: 1;
+    }
+    100%{
+      background-position: 0 -180px;;
+      opacity: 1;
+    }
+    
+  }
+
+  @keyframes slash-animation-4 {
+    0%{
+      opacity: 0;
+      background-position:  -960px -360px;
+    }
+    50%{
+      background-position:  -960px -360px;
+      opacity: 0;
+    }
+    51%{
+      background-position:  -960px -360px;
+      opacity: 1;
+    }
+    100%{
+      background-position: 0 -360px;;
+      opacity: 1;
+    }
+    
+  }
+
+  @keyframes slash-animation-5 {
+    0%{
+      opacity: 0;
+      background-position:  -960px -540px;
+    }
+    50%{
+      background-position:  -960px -540px;
+      opacity: 0;
+    }
+    51%{
+      background-position:  -960px -540px;
+      opacity: 1;
+    }
+    100%{
+      background-position: 0 -540px;;
+      opacity: 1;
+    }
+    
+  }
+
+.slash-1 {
+    width:180px;
+    height:180px;
+    background:  url('/../images/slash2.png')  0 -540px;
+    animation: slash-animation-1 .25s steps(5)  1;
+    transform: scale(-.7,.7) ;
+  }
+
+
+.slash-5 {
+  width:180px;
+  height:180px;
+  background:  url('/../images/slash2.png')  0 -540px;
+  animation: slash-animation-5 .25s steps(5)  1;
+  transform: scale(-.7,.7) ;
+}
+
+  .slash-4 {
+    width:180px;
+    height:180px;
+    background:  url('/../images/slash2.png')  0 -360px;
+    animation: slash-animation-4 .25s steps(5)  1;
+    transform: scale(.7,.7) ;
+  }
+
+  .slash-3 {
+    width:180px;
+    height:180px;
+    background:  url('/../images/slash2.png')  0 -180px;
+    animation: slash-animation-3 .25s steps(5)  1;
+    transform: scale(.7,-.7) ;
+  }
   
-  .side-bar{
+.slash-2 {
+  width:180px;
+  height:180px;
+  background:  url('/../images/slash2.png')  0 0px;
+  animation: slash-animation-2 .25s steps(5)  1;
+  transform: scale(.7,-.7) ;
+}
+
+
+  .side-bar {
     float: left;
   }
 
-  .monster{
+  .monster {
     width:150px;
     height:150px;
     background:  url('/../images/monster.png')  -450px -345px;
   }
 
-  .monster-13{
+  .monster-13 {
     width:150px;
     height:150px;
     background:  url('/../images/monster.png')  -450px -345px;
   }
 
-  .monster-12{
+  .monster-12 {
     width:150px;
     height:150px;
     background:  url('/../images/monster.png')  -300px -345px;
   }
 
-  .monster-11{
+  .monster-11 {
     width:150px;
     height:150px;
     background:  url('/../images/monster.png')  0 -355px;
   }
 
-  .monster-10{
-    width:150px;
-    height:150px;
+  .monster-10 {
+    width:150px;    height:150px;
     background:  url('/../images/monster.png')  -150px -355px;
   }
-  .monster-9{
+  .monster-9 {
     width:150px;
     height:150px;
     background:  url('/../images/monster.png')  -150px -355px;
   }
 
-  .monster-8{
+  .monster-8 {
     width:150px;
     height:150px;
     background:  url('/../images/monster.png')  0 -180px;
   }
   
-  .monster-7{
+  .monster-7 {
     width:150px;
     height:150px;
     background:  url('/../images/monster.png')  -150px -180px;
   }
 
-  .monster-6{
+  .monster-6 {
     width:150px;
     height:150px;
     background:  url('/../images/monster.png')  -300px -180px;
   }
 
-  .monster-5{
+  .monster-5 {
     width:150px;
     height:150px;
     background:  url('/../images/monster.png')  -450px -180px;
@@ -143,17 +283,15 @@ body {
     width:150px;
     height:180px;
     background:  url('/../images/monster.png')  -450px 0;
-
   }
 
-  .monster-3{
+  .monster-3 {
     width:150px;
     height:180px;
     background:  url('/../images/monster.png')  -300px 0;
-
   }
 
-  .monster-2{
+  .monster-2 {
     width:150px;
     height:180px;
     background:  url('/../images/monster.png')  -150px 0;
@@ -164,5 +302,4 @@ body {
     width:150px;
     height:180px;
     background:  url('/../images/monster.png')  0 0;
-
   }

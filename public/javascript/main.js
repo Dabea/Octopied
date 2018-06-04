@@ -1,10 +1,11 @@
-$(function(){
+$(function() {
 
 $.ajax('/game/config', {
     type: 'GET'
-}).then(function(results){
+}).then(function(results) {
 
 //Seting up Main variables
+let attackCounter = 1 ;
 const collecitonTimeModifer = results.gameConfig.collection_time_modifier;
 const expGrothModifier = results.gameConfig.experience_growth_modifier;
 const tradeCost ={
@@ -15,8 +16,7 @@ const tradeCost ={
     fish: results.gameConfig.fish_trade_cost,
     shark: results.gameConfig.shark_trade_cost
 };
-const resourceDiffuculityRank ={
-    dirt: results.gameConfig.dirt_resource_difficulty_rank,
+const resourceDiffuculityRank ={    dirt: results.gameConfig.dirt_resource_difficulty_rank,
     rock: results.gameConfig.rock_resource_difficulty_rank,
     steel: results.gameConfig.steel_resource_difficulty_rank,
     worm: results.gameConfig.worm_resource_difficulty_rank,
@@ -101,7 +101,7 @@ const resourseUpgradeList = {
     }
 };
 
-function refreshCollectorStatuses(){
+function refreshCollectorStatuses() {
     let check;
     for (let key in collectorStatus) {
         check = collectorStatus[key] ? '[x]' : '[]';
@@ -112,10 +112,11 @@ function refreshCollectorStatuses(){
     }
 };
 
-function refreshDisplay(){
+function refreshDisplay() {
     $('.counter').text(resources.points);
     $('.currnet-level').text(`Level: ${octoStats.level}`);
     $('.current-exp').text(`Exp: ${octoStats.exp}`);
+    $('.current-stage').text(octoStats.stage);
     $('.babby-count').text(resources.babbies);
     $('.resource-worm').text(resources.worm);
     $('.resource-fish').text(resources.fish);
@@ -130,11 +131,14 @@ function refreshDisplay(){
     $('.defense-level').text(octoStats.proficiency.defense);
     $('.house-level').text(resources.house);
     $('.babby-level').text(resources.babbiesLevel);
+    if(octoStats.level > 9){
+        $('.octo').attr('src', '/images/Octopus.gif');
+    }
 };
 
 refreshDisplay();
 
-function updateDB(alertSave){
+function updateDB(alertSave) {
     if (alertSave) {
         alert('Your progress is being saved!');
     };
@@ -145,18 +149,18 @@ function updateDB(alertSave){
             octoStats: octoStats,
             collectorStatus: collectorStatus
         }
-    }).then(function(){
+    }).then(function() {
         console.log('Your progress has been saved!');
-    }).catch(function(err){
+    }).catch(function(err) {
         console.log(`Oh boy, it broke: ${err}`);
     });
 };
 
-$('#save-progress').click(function(){
+$('#save-progress').click(function() {
     updateDB(false);
 });
 
-setInterval(function(){updateDB(true);}, 180000);
+setInterval(function() {updateDB(true);}, 180000);
 
 // Could add a generateor to create custom kids and indepent levels ** strech
 const babby = {
@@ -172,16 +176,22 @@ const babby = {
         $('.babby-count').text(this.number);
     },
     feed: function() {
-        resources.points -= ((this.active * 5  * this.hunger) + (this.available * this.hunger));
+        resources.points -= ((this.active * 4 ) + (this.available * this.hunger));
         $('.counter').text(resources.points);
         if(resources.points < 0) {
+            collectorStatus.worm = false
+            collectorStatus.fish = false
+            collectorStatus.shark = false
             collectorStatus.dirt = false
+            collectorStatus.rock = false
+            collectorStatus.steel = false
+            refreshDisplay();
         }
     },
     //need to move logic for the collection starting In here
     // currenlty on line 220 with collector state
     startCollecting: function(resource) {
-        if( this.available > 0){
+        if( this.available > 0) {
             this.active++;
             this.available--
             collectorStatus[resource] = true;
@@ -193,7 +203,7 @@ const babby = {
        
     },
     stopCollecting: function(resource) {
-        if( this.active >= 1 ){
+        if( this.active >= 1 ) {
             this.active--;
             this.available++
             collectorStatus[resource] = false;
@@ -203,8 +213,8 @@ const babby = {
     }
 }
 
-function startGivenCollector(resource){
-    switch(resource){
+function startGivenCollector(resource) {
+    switch(resource) {
         case 'worm':
             collectWorms();
             break;
@@ -252,10 +262,7 @@ function clickFrenzy() {
    levelup();
    $('.counter').text(resources.points);
    // TODO: move to leveup function 
-   if(octoStats.level === 10 && octoStats.exp === 0){
-       alert('Oh Something Happening');
-      evolve();
-   }
+  
 
 }
 
@@ -266,14 +273,14 @@ function clickFrenzy() {
  */
 function evolve() {
     let evolveFlash = 0
-    const timer = setInterval(function(){
-    if((evolveFlash % 2) === 0){
+    const timer = setInterval(function() {
+    if((evolveFlash % 2) === 0) {
         $('.octo').attr('src', '/images/Octopus.gif');
     }else{
         $('.octo').attr('src', '/images/original.gif');
     }
     evolveFlash++;
-    if(evolveFlash === 11){
+    if(evolveFlash === 11) {
         clearInterval(timer);
     }
 },180);
@@ -287,7 +294,7 @@ function evolve() {
  * @method calcualteClickValue
  * @returns INTEGER clickValue 
  */
-function calcualteClickValue(){
+function calcualteClickValue() {
      const proficiency = (octoStats.proficiency.food * .05) + 1;
      const tool =  0//toolA + toolB + toolC;
      const baseCollect = 1;
@@ -317,13 +324,18 @@ function gainExperiance() {
  * 
  * @method levelup
  */
-function levelup(){
-    if(octoStats.exp > octoStats.level * expGrothModifier){
-       alert('level up')
+function levelup() {
+    if(octoStats.exp > octoStats.level * expGrothModifier) {
+    //    alert('level up')
         octoStats.level ++;
         octoStats.exp = 0;
         $('.currnet-level').text(`Level:${octoStats.level}`)
-        $('.current-exp').text(`Exp: ${octoStats.exp}`);
+        $('.current-exp').text(`Exp: ${octoStats.exp}`)
+
+        if(octoStats.level === 10 && octoStats.exp === 0) {
+            alert('Oh Something Happening');
+           evolve();
+        }
        
     }
 }
@@ -335,8 +347,8 @@ function levelup(){
  * @param {any} itemName 
  * @param {number} [count=1] 
  */
-function buyResource(itemName, count = 1){
-    if(resources.points > tradeCost[itemName] * count){
+function buyResource(itemName, count = 1) {
+    if(resources.points > tradeCost[itemName] * count) {
         //Add resource
         resources[itemName]++;
         //subtract toatl points
@@ -346,7 +358,7 @@ function buyResource(itemName, count = 1){
         const selector = '.resource-' + [itemName];
         $(selector).text( resources[itemName])
     }else{
-        alert('you dont have enouf points')
+        alert(`you dont have enouf points You Need  ${tradeCost[itemName]}  points`)
     }
 }
 
@@ -361,8 +373,8 @@ function buyResource(itemName, count = 1){
  * @param {number} [count=1] 
  * @return {bool}
  */
-function buyItem(itemName, count = 1){
-    if(resources[itemName] >=  count){
+function buyItem(itemName, count = 1) {
+    if(resources[itemName] >=  count) {
         resources[itemName] -= count;
         $(`.${itemName}` ).text( resources[itemName]);
         const selector = '.resource-' + [itemName];
@@ -374,15 +386,46 @@ function buyItem(itemName, count = 1){
     }
 }
 
+function buyUpgrade(upgrade) {
+   const currentUpgradeLevel =  octoStats.proficiency[upgrade];
+   const rank = Math.ceil(currentUpgradeLevel / 10);
+   const rankName = 'Rank' + rank
+   const requiredResource = resourseUpgradeList[upgrade][rankName];
+    const resourceQuanityNeeded = 3 * octoStats.proficiency[upgrade] * rank ;
+   if (resourceQuanityNeeded <  resources[requiredResource]) {
+    resources[requiredResource] -=resourceQuanityNeeded;
+    octoStats.proficiency[upgrade]++;
+    refreshDisplay();
+   }else{
+       alert(`you need ${resourceQuanityNeeded}  ${requiredResource} To buy this Item`)
+   }
+}
 
-function checkForCollectors(){
+
+function checkForCollectors() {
     const check = '[]';
     $('.collect-shark').text(check);
 
 }
 
-$('.collect-worm').on('click', function(){
-    if(babby.number === 0){
+$('.upgrade-heart').on('click', function() {
+    buyUpgrade('heart')
+})
+
+$('.upgrade-food').on('click', function() {
+    buyUpgrade('food')
+})
+
+$('.upgrade-attack').on('click', function() {
+    buyUpgrade('attack')
+})
+
+$('.upgrade-defense').on('click', function() {
+    buyUpgrade('defense')
+})
+
+$('.collect-worm').on('click', function() {
+    if(babby.number === 0) {
         console.log("You must have a child to collect resources")
         return;
     }
@@ -392,8 +435,8 @@ $('.collect-worm').on('click', function(){
     
 })
 
-$('.collect-fish').on('click', function(){
-    if(babby.number === 0){
+$('.collect-fish').on('click', function() {
+    if(babby.number === 0) {
         console.log("You must have a child to collect resources")
         return;
     }
@@ -402,8 +445,8 @@ $('.collect-fish').on('click', function(){
     $('.collect-fish').text(check);
 })  
 
-$('.collect-shark').on('click', function(){
-    if(babby.number === 0){
+$('.collect-shark').on('click', function() {
+    if(babby.number === 0) {
         console.log("You must have a child to collect resources")
         return;
     }
@@ -412,12 +455,12 @@ $('.collect-shark').on('click', function(){
     $('.collect-shark').text(check);
 })  
 
-$('.collect-dirt').on('click', function(){
-    if(babby.number === 0){
+$('.collect-dirt').on('click', function() {
+    if(babby.number === 0) {
         console.log("You must have a child to collect resources")
         return;
     }
-    if(resources.points < 0){
+    if(resources.points < 0) {
         alert('please collect food')
         return;
     }
@@ -426,8 +469,8 @@ $('.collect-dirt').on('click', function(){
     $('.collect-dirt').text(check);
 }) 
 
-$('.collect-rock').on('click', function(){
-    if(babby.number === 0){
+$('.collect-rock').on('click', function() {
+    if(babby.number === 0) {
         console.log("You must have a child to collect resources")
         return;
     }
@@ -436,8 +479,8 @@ $('.collect-rock').on('click', function(){
     $('.collect-rock').text(check);
 })
 
-$('.collect-steel').on('click', function(){
-    if(babby.number === 0){
+$('.collect-steel').on('click', function() {
+    if(babby.number === 0) {
         console.log("You must have a child to collect resources")
         return;
     }
@@ -448,9 +491,9 @@ $('.collect-steel').on('click', function(){
 
 function collectWorms() {
     $('.resource-worm').text(resources.worm);
-    if(resources.points > 0 &&collectorStatus.worm){
-        setTimeout(function(){
-            if(collectorStatus.worm){
+    if(resources.points > 0 &&collectorStatus.worm) {
+        setTimeout(function() {
+            if(collectorStatus.worm) {
                 resources.worm++;
                 collectWorms();
             }
@@ -460,9 +503,9 @@ function collectWorms() {
 
 function collectFish() {
     $('.resource-fish').text(resources.fish);
-    if(resources.points > 0 &&collectorStatus.fish){
-        setTimeout(function(){
-            if(collectorStatus.fish){
+    if(resources.points > 0 &&collectorStatus.fish) {
+        setTimeout(function() {
+            if(collectorStatus.fish) {
                 resources.fish++;
                 collectFish();
             }
@@ -472,8 +515,8 @@ function collectFish() {
 
 function collectShark() {
     $('.resource-shark').text(resources.shark);
-    if(resources.points > 0 &&collectorStatus.shark){
-        setTimeout(function(){
+    if(resources.points > 0 &&collectorStatus.shark) {
+        setTimeout(function() {
             resources.shark++;
             collectShark();
         }, (collecitonTimeModifer  * resourceDiffuculityRank.shark));
@@ -482,8 +525,8 @@ function collectShark() {
 
 function collectDirt() {
     $('.resource-dirt').text(resources.dirt);
-    if(resources.points > 0 &&collectorStatus.dirt){
-        setTimeout(function(){
+    if(resources.points > 0 &&collectorStatus.dirt) {
+        setTimeout(function() {
             resources.dirt++;
             collectDirt();
         }, (collecitonTimeModifer  * resourceDiffuculityRank.dirt));
@@ -492,8 +535,8 @@ function collectDirt() {
 
 function collectRock() {
     $('.resource-rock').text(resources.rock);
-    if(resources.points > 0 &&collectorStatus.rock){
-        setTimeout(function(){
+    if(resources.points > 0 &&collectorStatus.rock) {
+        setTimeout(function() {
             resources.rock++;
             collectRock();
         }, (collecitonTimeModifer  * resourceDiffuculityRank.rock));
@@ -502,8 +545,8 @@ function collectRock() {
 
 function collectSteel() {
     $('.resource-steel').text(resources.steel);
-    if(resources.points > 0 &&collectorStatus.steel){
-        setTimeout(function(){
+    if(resources.points > 0 &&collectorStatus.steel) {
+        setTimeout(function() {
             resources.steel++;
             collectSteel();
         }, (collecitonTimeModifer  * resourceDiffuculityRank.steel));
@@ -513,8 +556,8 @@ function collectSteel() {
 
 function collectResource(type) {
     $('.resource-' + type).text(resources[type]);
-    if(collectorStatus[type]){
-        setTimeout(function(){
+    if(collectorStatus[type]) {
+        setTimeout(function() {
             resources[type]++;
             console.log("resource is added", resources);
             collectResource(type);
@@ -523,6 +566,8 @@ function collectResource(type) {
    
     }
 }
+
+
 
 /**  
  * this is a function that will collect the reouces over time
@@ -533,27 +578,27 @@ function collectResource(type) {
 //     const 
 // }
 
-$('.buy-dirt').on('click', function(){
+$('.buy-dirt').on('click', function() {
     buyResource('dirt');
 });
 
-$('.buy-worm').on('click', function(){
+$('.buy-worm').on('click', function() {
     buyResource('worm');
 });
 
-$('.buy-fish').on('click', function(){
+$('.buy-fish').on('click', function() {
     buyResource('fish');
 });
 
-$('.buy-shark').on('click', function(){
+$('.buy-shark').on('click', function() {
     buyResource('shark');
 });
 
-$('.buy-rock').on('click', function(){
+$('.buy-rock').on('click', function() {
     buyResource('rock');
 });
 
-$('.buy-steel').on('click', function(){
+$('.buy-steel').on('click', function() {
     buyResource('steel');
 });
 
@@ -564,8 +609,8 @@ $('.buy-steel').on('click', function(){
 
 $('.have-babby').on('click', function() {
     //set requirments  Must be lv 11 // have home //  cost 10 fish for first
-    if(babby.number < resources.house){
-        if(buyItem('worm', 1)){
+    if(babby.number < resources.house) {
+        if(buyItem('worm', 1)) {
             babby.createBaby();
         }
     }else {
@@ -618,7 +663,7 @@ Need a text animation to display text (for level ups and other events)
 
 */
 
-function theHunger(){
+function theHunger() {
     babby.feed();
     console.log('The hunger strikes')
     setTimeout(() => {
@@ -629,7 +674,7 @@ function theHunger(){
 
 /********** The Colseaum ********/
 
-function calculateAttack(){
+function calculateAttack() {
     const dammage =  ((octoStats.proficiency.attack * 2) + octoStats.level) * ((octoStats.prestidge * .05) + 1);
     console.log(dammage);
      return dammage;
@@ -639,9 +684,11 @@ function calculateAttack(){
 let boss = {
     currentHp : 10,
     isBoss: false,
-    nextStage:function(){
+    
+    nextStage:function() {
             octoStats.stage++
-            if(octoStats.stage % 10 === 0){
+            $('.current-stage').text(octoStats.stage);
+            if(octoStats.stage % 10 === 0) {
                 this.currentHp = octoStats.stage * (20 + (octoStats.stage * 2));
                 this.isBoss = true;
                 $('.boss-hp').text(this.currentHp);
@@ -670,10 +717,10 @@ let boss = {
         $('.counter').text(resources.points);
         levelup();
     },
-    hit: function(){
+    hit: function() {
         this.currentHp -= calculateAttack() -2;
         $('.boss-hp').text(this.currentHp);
-        if(this.currentHp < 1 ){
+        if(this.currentHp < 1 ) {
             boss.getRewards();
             boss.nextStage();
         }
@@ -681,15 +728,51 @@ let boss = {
     
 }
 
-$('.boss').on('click', function(){
+$('.boss').on('click', function() {
         boss.hit();
+
 })
 
+function whichAnimationEvent(){
+    var t,
+        el = document.createElement("fakeelement");
+  
+    var animations = {
+      "animation"      : "animationend",
+      "OAnimation"     : "oAnimationEnd",
+      "MozAnimation"   : "animationend",
+      "WebkitAnimation": "webkitAnimationEnd"
+    }
+  
+    for (t in animations){
+      if (el.style[t] !== undefined){
+        return animations[t];
+      }
+    }
+  }
+  
+  var animationEvent = whichAnimationEvent();
+  
+  $(".boss").click(function(){
+   $('.boss-image').append(`<div style=" position: absolute" class="slash-${attackCounter}"></div>`)
+   if(attackCounter < 5){
+       attackCounter++;
+   }else{
+       attackCounter = 1;
+       $('.boss-image').empty();
+   }
+   console.log(attackCounter);
+    $('.slash-1').one(animationEvent,
+                function(event) {
+     $(this).remove();
+    });
+  });
 
 
 theHunger();
 
-}).catch(function(err){
+
+}).catch(function(err) {
     console.log(`Oh boy, it broke: ${err}`);
 });
 
