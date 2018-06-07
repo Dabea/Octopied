@@ -10,18 +10,9 @@ $(function(){
                 minlength: 8
               }
         },
-        messages: {
-            email:{
-                required: "Email is required.",
-            },
-            password: {
-                required: "Password is required.",
-                minlength: "Password must be at least 8 characters."
-            }
-        },
-        errorElement : 'div',
+        errorElement : 'span',
         errorPlacement: function(error, element) {
-            var placement = $(element).data('error');
+            const placement = $(element).data('error');
             if (placement) {
                 $(placement).append(error)
             } else {
@@ -38,19 +29,11 @@ $(function(){
             },
             password: {
                 required: true,
-                minlength: 5
+                minlength: 8
               },
             repass: {
-                equalTo: "#pass"
-            }
-        },
-        messages: {
-            email:{
-                required: "Email is required.",
-            },
-            password: {
-                required: "Password is required.",
-                minlength: "Password must be at least 5 characters."
+                equalTo: "#pass",
+                minlength: 8
             }
         },
         errorElement : 'div',
@@ -72,22 +55,11 @@ $(function(){
             },
             password: {
                 required: true,
-                minlength: 5
+                minlength: 8
               },
             repass: {
-                equalTo: "#pass"
-            }
-        },
-        messages: {
-            email:{
-                required: "Email is required.",
-            },
-            password: {
-                required: "Password is required.",
-                minlength: "Password must be at least 5 characters."
-            },
-            repass: {
-                equalTo: "Passwords must match."
+                equalTo: "#pass",
+                minlength: 8
             }
         },
         errorElement : 'div',

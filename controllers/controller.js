@@ -327,7 +327,8 @@ module.exports = function(app, passport, db){
             sharks: parseInt(req.body.resources.shark),
             dirt: parseInt(req.body.resources.dirt),
             rocks: parseInt(req.body.resources.rock),
-            steel: parseInt(req.body.resources.steel)
+            steel: parseInt(req.body.resources.steel),
+            houses: parseInt(req.body.resources.house)
         };
         Resources.update(resources,
         {

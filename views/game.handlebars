@@ -1,11 +1,11 @@
-<main class="stage" >
-    <div  class="overlay"></div>
-<p id="alert" ></p>
-<button id="save-progress">Save Progress</button>
-<a href="/logout"><button>Logout</button></a>
-<div class="side-bar">
+
+
+<div class="backgrounds">
+    
+</div>
+
+
 <main class="stage">
-    <div class="overlay"></div>
     <div class="wrapper">
         <div class="modal" id="setting">
             <div class="modal-content">
@@ -27,13 +27,13 @@
         <div class="heartsFood">
             <div class="health">
                 <span class="health-0 health-full">
-                    <i class="material-icons medium">favorite</i>
+                    <i class="material-icons small">favorite</i>
                 </span>
                 <span class="health-1 health-full">
-                    <i class="material-icons medium">favorite</i>
+                    <i class="material-icons small">favorite</i>
                 </span>
                 <span class="health-2 health-full">
-                    <i class="material-icons medium">favorite</i>
+                    <i class="material-icons small">favorite</i>
                 </span>
                 <p>Food:
                     <span class="counter">0</span>
@@ -43,7 +43,7 @@
             <div><p>Number of Babies:
                 <span class="babby-count"> 0 </span>
                 </p>
-                <button class="have-babby waves-effect waves-teal btn-flat"> Have Baby </button>
+                <button class="have-babby  teal btn"> Have Baby </button>
             </div>
         </div>
         </div>
@@ -52,48 +52,48 @@
                 <li>Worms:
                     <span class="resource-worm"> 0 </span>
                     <button><a class="buy-worm">
-                        <i class="material-icons">done</i>
+                        <i class="material-icons">attach_money</i>
                     </a></button>
                     <span class="collect-worm"> [] </span>
                 </li>
                 <li>Fishs:
                     <span class="resource-fish"> 0 </span>
                     <button><a class="buy-fish">
-                        <i class="material-icons">done</i>
+                        <i class="material-icons">attach_money</i>
                     </a></button>
                     <span class="collect-fish"> [] </span>
                 </li>
                 <li>Sharks:
                     <span class="resource-shark"> 0 </span>
                  <button><a class="buy-shark">
-                        <i class="material-icons">done</i>
+                        <i class="material-icons">attach_money</i>
                     </a></button> 
                     <span class="collect-shark"> [] </span>
                 </li>
                 <li>Dirt:
                     <span class="resource-dirt"> 0 </span>
                     <button><a class="buy-dirt">
-                        <i class="material-icons">done</i>
+                        <i class="material-icons">attach_money</i>
                     </a></button>
                     <span class="collect-dirt"> [] </span>
                 </li>
                 <li>Rocks:
                     <span class="resource-rock"> 0 </span>
                     <button><a class="buy-rock">
-                        <i class="material-icons">done</i>
+                        <i class="material-icons">attach_money</i>
                     </a></button>
                     <span class="collect-rock"> [] </span>
                 </li>
                 <li>Steel:
                     <span class="resource-steel"> 0 </span>
                     <button><a class="buy-steel">
-                        <i class="material-icons">done</i>
+                        <i class="material-icons">attach_money</i>
                     </a></button>
                     <span class="collect-steel"> [] </span>
                 </li>
             </ul>
         </div>
-        <div class="stats" style="display: none">
+        <div class="stats">
             <div>Heart Upgrade:
                 <span class="heart-level"> 1 </span>
                 <button class="upgrade-heart material-icons">exposure_plus_1</button>
@@ -119,12 +119,15 @@
                 <button class="upgrade-babby material-icons">exposure_plus_1</button>
             </div>
         </div>
-
-        <div class="boss">The Big Bad boss
-            <span>HP:</span>
-            <span class="boss-hp">10</span>
+        <div class="boss "><span>HP:</span>  <span class="boss-hp">10</span> 
+            <div class="boss-container">
+                    <div class="boss-image monster crit-hit"></div>
+            </div>
+            
+            <div > <span>Stage:</span> <span class="current-stage" ></span></div>
+            <div class="battle-time-div"> Battle Time: <span class="battle-time"></span> </div>
         </div>
-        <image class="octo" style="width:80px; margin-left:45%; margin-top:25%;" src="/images/original.gif"></image>
+        <image class="octo" style="width:130px;" src="/images/original.gif"></image>
         
         
         <div class="fixed-action-btn">
@@ -149,7 +152,9 @@
                 </li>
             </ul>
         </div>
+    </div>    
 </main>
+{{!-- </div> --}}
 <script>
     $(document).ready(function () {
         $('.fixed-action-btn').floatingActionButton();

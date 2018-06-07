@@ -1,0 +1,349 @@
+  /**************** Stage Backgrounds *************/
+  .overlay{
+    position:fixed;
+    background:url('/../images/Metallic-Blue24.jpg');
+    animation:100s scroll infinite linear;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    opacity: 0.05;
+    z-index: -3;
+  }
+
+  /**************** Animations (KeyFrames) ****************/
+  @keyframes scroll {
+    100%{
+      background-position:0px 3000px;
+    }
+  }
+
+  @keyframes beat {
+    0%{
+      font-size:3em;
+    }
+    50%{
+      font-size:2.5em;
+    }
+    100%{
+      font-size:3em;
+    }
+  }
+
+
+
+@keyframes slash-animation-1 {
+    100%{
+      background-position:  -960px -540px;
+      opacity: 1;
+    }
+    
+  }
+  
+  @keyframes slash-animation-2 {
+    0%{
+      opacity: 0;
+      background-position:  -960px 0px;
+    }
+    50%{
+      background-position:  -960px 0px;
+      opacity: 0;
+    }
+    51%{
+      background-position:  -960px 0px;
+      opacity: 1;
+    }
+    100%{
+      background-position: 0 0px;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slash-animation-3 {
+    0%{
+      opacity: 0;
+      background-position:  -960px -180px;
+    }
+    50%{
+      background-position:  -960px -180px;
+      opacity: 0;
+    }
+    51%{
+      background-position:  -960px -180px;
+      opacity: 1;
+    }
+    100%{
+      background-position: 0 -180px;;
+      opacity: 1;
+    }
+    
+  }
+  
+  @keyframes slash-animation-4 {
+    0%{
+      opacity: 0;
+      background-position:  -960px -360px;
+    }
+    50%{
+      background-position:  -960px -360px;
+      opacity: 0;
+    }
+    51%{
+      background-position:  -960px -360px;
+      opacity: 1;
+    }
+    100%{
+      background-position: 0 -360px;;
+      opacity: 1;
+    }
+    
+  }
+  
+  @keyframes slash-animation-5 {
+    0%{
+      opacity: 0;
+      background-position:  -960px -540px;
+    }
+    50%{
+      background-position:  -960px -540px;
+      opacity: 0;
+    }
+    51%{
+      background-position:  -960px -540px;
+      opacity: 1;
+    }
+    100%{
+      background-position: 0 -540px;;
+      opacity: 1;
+    }
+    
+  }
+  
+  .slash-1 {
+    width:180px;
+    height:180px;
+    background:  url('/../images/slash2.png')  0 -540px;
+    animation: slash-animation-1 .25s steps(5)  1;
+    transform: scale(-.7,.7) ;
+  }
+  
+  
+  .slash-5 {
+  width:180px;
+  height:180px;
+  background:  url('/../images/slash2.png')  0 -540px;
+  animation: slash-animation-5 .25s steps(5)  1;
+  transform: scale(-.7,.7) ;
+  }
+  
+  .slash-4 {
+    width:180px;
+    height:180px;
+    background:  url('/../images/slash2.png')  0 -360px;
+    animation: slash-animation-4 .25s steps(5)  1;
+    transform: scale(.7,.7) ;
+  }
+  
+  .slash-3 {
+    width:180px;
+    height:180px;
+    background:  url('/../images/slash2.png')  0 -180px;
+    animation: slash-animation-3 .25s steps(5)  1;
+    transform: scale(.7,-.7) ;
+  }
+  
+  .slash-2 {
+  width:180px;
+  height:180px;
+  background:  url('/../images/slash2.png')  0 0px;
+  animation: slash-animation-2 .25s steps(5)  1;
+  transform: scale(.7,-.7) ;
+  }
+  
+  
+  .side-bar {
+    float: left;
+  }
+  
+  .monster {
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -450px -345px;
+  }
+  
+  .monster-13 {
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -450px -345px;
+  }
+  
+  .monster-12 {
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -300px -345px;
+  }
+  
+  .monster-11 {
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  0 -340px;
+  }
+  
+  .monster-10 {
+    width:150px;    height:150px;
+    background:  url('/../images/monster.png')  -150px -355px;
+  }
+  .monster-9 {
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -150px -355px;
+  }
+  
+  .monster-8 {
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  0 -185px;
+  }
+  
+  .monster-7 {
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -150px -185px;
+  }
+  
+  .monster-6 {
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -300px -180px;
+  }
+  
+  .monster-5 {
+    width:150px;
+    height:150px;
+    background:  url('/../images/monster.png')  -450px -180px;
+  }
+  
+  .monster-4{
+    width:150px;
+    height:180px;
+    background:  url('/../images/monster.png')  -450px 0;
+  }
+  
+  .monster-3 {
+    width:150px;
+    height:180px;
+    background:  url('/../images/monster.png')  -300px 0;
+  }
+  
+  .monster-2 {
+    width:150px;
+    height:180px;
+    background:  url('/../images/monster.png') -145px -15px;
+  
+  }
+  
+  .monster-1 {
+    width:150px;
+    height:185px;
+    background:  url('/../images/monster.png')  0 0;
+  }
+  
+  
+  
+  @keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+  }
+  
+  @keyframes move-stars-foward {
+    from {background-position:0 0;}
+    to {background-position: 0 5000px;}
+  }
+  
+  @keyframes move-space-clouds-foward {
+    from {background-position:0 0;}
+    to {background-position: 0  5000px;}
+  }
+  
+  @keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px  8000px;}
+  }
+  
+  
+  .stage-1 {
+    background:url('/../images/Metallic-Blue1.jpg');
+    z-index: -4;
+  }
+  
+  /*stage-1 / stars twinkling clouds  / stars twinkling /  stars stars2 space-clouds //.stars-nebula  stars-2  space-clouds */
+  .stars, .stars-2, .twinkling, .clouds, .stage-1, .space-clouds, .stars-nebula {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display:block;
+  }
+  
+  .stars-nebula {
+    opacity: .9;
+  background:#000 url('https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') repeat top center;
+  z-index:-3;
+  }
+  
+  .stars {
+    background:#000 url('/../images/stars.png') repeat top center;
+    z-index:-3;
+    }
+  
+  
+  .stars-2 {
+    opacity: .4;
+    background:#000 url('/../images/stars.png') repeat top center;
+    z-index:-2;
+    animation:move-stars-foward 30s linear infinite;
+    }
+  
+  .twinkling{
+  background:transparent url('/../images/twinkling.png') repeat top center;
+  z-index:-2;
+  
+  
+  animation:move-twink-back 200s linear infinite;
+  }
+  
+  .clouds {
+    background:transparent url('/../images/clouds3.png') repeat top center;
+    z-index:-1;
+  animation:move-clouds-back 200s linear infinite;
+  }
+  
+  .space-clouds{
+    background:transparent url('/../images/clouds3.png') repeat top center;
+    z-index:-1;
+  animation:move-space-clouds-foward 200s linear infinite;
+  }
+  
+  
+  .crit-hit{
+    animation: shake .5s linear infinite;
+  }
+  
+  @keyframes shake {
+    10%, 90% {
+      margin-left: -1px
+    }
+    
+    20%, 80% {
+      margin-left: 2px
+    }
+  
+    30%, 50%, 70% {
+      margin-left: -4px
+    }
+  
+    40%, 60% {
+      margin-left: 4px
+    }
+  }

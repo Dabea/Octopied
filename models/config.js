@@ -9,6 +9,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             defaultValue: 5000
         },
+        attack_counter: {
+            type: DataTypes.INTEGER,
+            defaultValue: 1
+        },
         experience_growth_modifier: {
             type: DataTypes.INTEGER,
             defaultValue: 20
