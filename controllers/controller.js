@@ -88,12 +88,11 @@ module.exports = function(app, passport, db){
     });
 
     app.get('/game/config', function isLoggedIn(req, res, next){
-        console.log("The Use stats is ****************" , req.isAuthenticated())
+        console.log("The Use stats is ****************" , req.isAuthenticated());
         if (req.isAuthenticated()) {
             return next();
-            
         }
-        res.status(401).end();  res.status(401).end();
+        res.status(401).end();
     }, function(req, res){
         const config = {};
         Config.findOne({
@@ -300,6 +299,7 @@ module.exports = function(app, passport, db){
             experience: parseInt(req.body.octoStats.exp),
             prestige: parseInt(req.body.octoStats.prestidge),
             stage: parseInt(req.body.octoStats.stage),
+            hp: parseInt(req.body.octoStats.hp),
             food_proficiency: parseInt(req.body.octoStats.proficiency.food),
             gather_proficiency: parseInt(req.body.octoStats.proficiency.gather),
             attack_proficiency: parseInt(req.body.octoStats.proficiency.attack),
@@ -313,6 +313,9 @@ module.exports = function(app, passport, db){
             worm_collector_status: (req.body.collectorStatus.worm === 'true') ? true : false,
             fish_collector_status: (req.body.collectorStatus.fish === 'true') ? true : false,
             shark_collector_status: (req.body.collectorStatus.shark === 'true') ? true : false,
+            lost_one: (req.body.wonOrLost.lostOne === 'true') ? true : false,
+            lost_two: (req.body.wonOrLost.lostTwo === 'true') ? true : false,
+            won: (req.body.wonOrLost.won === 'true') ? true : false
         };
         const resources = {
             food: parseInt(req.body.resources.points),
@@ -327,7 +330,12 @@ module.exports = function(app, passport, db){
             sharks: parseInt(req.body.resources.shark),
             dirt: parseInt(req.body.resources.dirt),
             rocks: parseInt(req.body.resources.rock),
-            steel: parseInt(req.body.resources.steel)
+            steel: parseInt(req.body.resources.steel),
+            houses: parseInt(req.body.resources.house),
+            feul: parseInt(req.body.resources.feul),
+            thrusters: parseInt(req.body.resources.thruster),
+            shuttle_bodies: parseInt(req.body.resources.shuttleBody),
+            shuttle_computers: parseInt(req.body.resources.shuttleComputer)
         };
         Resources.update(resources,
         {

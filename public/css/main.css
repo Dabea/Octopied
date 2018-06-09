@@ -2,6 +2,7 @@
 .game-background {
   background: url('/../images/Metallic-Blue1.jpg');
   z-index: 0;
+  height: 100%;
 }
 
 
@@ -28,6 +29,26 @@
 .resources ul {
   list-style: none;
 }
+
+/* .baby {
+  width: 20px;
+  position: relative;
+  animation-name: baby;
+  animation-duration: 90s;
+  animation-delay: 2s;
+  animation-iteration-count: infinite;
+  z-index: -1;
+}
+
+@keyframes baby {
+  0%   {right: 0%}
+  20%  {right: 60%}
+  30%  {right: 40%}
+  45%  {right: 55%}
+  70%  {right: 5%}
+  90%  {right: 35%}
+  100% {right: 0%}
+} */
 
 /* game */
 .wrapper{

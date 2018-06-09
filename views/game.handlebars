@@ -1,7 +1,9 @@
 
+
 <div class="backgrounds">
     
 </div>
+
 
 <main class="stage">
     <div class="wrapper">
@@ -9,9 +11,34 @@
             <div class="modal-content">
                 <h3>What would you like to do?</h3>
                 <button id="save-progress" class="waves-effect waves-light btn-large">Save Progress</button>
+                <button id="restart" class="waves-effect waves-light btn-large">Restart</button>
                 <a href="/logout">
                     <button class="logout waves-effect waves-light btn-large">Logout</button>
                 </a>
+            </div>
+        </div>
+        <div class="modal" id="modal2">
+            <div class="modal-content">
+                <h3>You lost! Your babies got too hungry.</h3>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+            </div>
+        </div>
+        <div class="modal" id="modal3">
+            <div class="modal-content">
+                <h3>You lost! You ran out of hearts.</h3>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+            </div>
+        </div>
+        <div class="modal" id="modal4">
+            <div class="modal-content">
+                <h3>You won!! You bought all you need to construct your Rocket Ship and go to your home planet.</h3>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
             </div>
         </div>
         <div class="side-bar">
@@ -33,20 +60,24 @@
                 <span class="health-2 health-full">
                     <i class="material-icons small">favorite</i>
                 </span>
+            </div>
+            <div>
                 <p>Food:
                     <span class="counter">0</span>
                 </p>
             </div>
-              <div class="numBabies">
-            <div><p>Number of Babies:
-                <span class="babby-count"> 0 </span>
-                </p>
-                <button class="have-babby  teal btn"> Have Baby </button>
+            <div class="numBabies">
+                <div>
+                    <p>Number of Babies:
+                    <span class="babby-count"> 0 </span>
+                    </p>
+                    <button class="have-babby  teal btn"> Have Baby </button>
+                </div>
             </div>
         </div>
-        </div>
         <div class="resources">
-            <ul>
+            <p>Resources</p>
+            <ul id="resources-list">
                 <li>Worms:
                     <span class="resource-worm"> 0 </span>
                     <button><a class="buy-worm">
@@ -92,7 +123,8 @@
             </ul>
         </div>
         <div class="stats">
-            <div>Heart Upgrade:
+            <p>Upgrades</p>
+            <div>Heart Level:
                 <span class="heart-level"> 1 </span>
                 <button class="upgrade-heart material-icons">exposure_plus_1</button>
             </div>
@@ -112,7 +144,7 @@
                 <span class="house-level"> 1 </span>
                 <button class="upgrade-house material-icons">exposure_plus_1</button>
             </div>
-            <div>Level Up Babies:
+            <div>Babies' Level:
                 <span class="babby-level"> 1 </span>
                 <button class="upgrade-babby material-icons">exposure_plus_1</button>
             </div>
@@ -123,7 +155,7 @@
             </div>
             
             <div > <span>Stage:</span> <span class="current-stage" ></span></div>
-            <div > Battle Time: <span class="battle-time"></span> </div>
+            <div class="battle-time-div"> Battle Time: <span class="battle-time"></span> </div>
         </div>
         <image class="octo" style="width:130px;" src="/images/original.gif"></image>
         
@@ -152,13 +184,13 @@
         </div>
     </div>    
 </main>
-</div>
+{{!-- </div> --}}
 <script>
     $(document).ready(function () {
         $('.fixed-action-btn').floatingActionButton();
         {            
                 $("#settings").on("click", function () {
-                    $(".modal").modal();
+                    $("#setting").modal();
                 });
         }
         $("#shop").on("click", function () {

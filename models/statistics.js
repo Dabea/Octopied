@@ -21,11 +21,11 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             defaultValue: 1
         },
-        food_proficiency: {
+        hp: {
             type: DataTypes.INTEGER,
-            defaultValue: 1
+            defaultValue: 30
         },
-        gather_proficiency: {
+        food_proficiency: {
             type: DataTypes.INTEGER,
             defaultValue: 1
         },
@@ -70,6 +70,18 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: false
         },
         shark_collector_status: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        lost_one: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        lost_two: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        won: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },

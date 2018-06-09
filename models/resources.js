@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         hearts: {
             type: DataTypes.INTEGER,
-            defaultValue: 0
+            defaultValue: 3
         },
         babies: {
             type: DataTypes.INTEGER,
