@@ -217,9 +217,6 @@ function updateDB(alertSave, reload) {
     });
 };
 
-initialInstruction();
-refreshDisplay(true);
-
 let rocketPiecesCount = 0;
 
 function configRocketPieceAvailability() {
@@ -312,7 +309,7 @@ const babby = {
     //need to move logic for the collection starting In here
     // currenlty on line 220 with collector state
     startCollecting: function(resource) {
-        if( this.available > 0) {
+        if (this.available > 0) {
             this.active++;
             resources.babbiesActive = this.active;
             this.available--;
@@ -320,10 +317,11 @@ const babby = {
             collectorStatus[resource] = true;
             // Builds the name of the funcition that needs to be called useing the given resource
             startGivenCollector(resource);
+            const toastHTML = `You now have a baby collecting ${resource}!`;
+            M.toast({html:toastHTML});
         }else{
-           const toastHTML =  'You do not have enough babies';
-        M.toast({html:toastHTML})
-        
+            const toastHTML =  'You do not have enough babies.';
+            M.toast({html:toastHTML})
         }
        
     },
@@ -335,16 +333,10 @@ const babby = {
             resources.babbiesAvailable = this.available;
             collectorStatus[resource] = false;
         }else{
-            console.error('No collectors to Stop');
+            console.error('No collectors to top.');
         }
     }
 };
-
-if (resources.babbies > 0) {
-    const toastHTML = `Your baby${(resources.babbies === 0) ? ' is' : 's are'} hungry! They will eat your food.`;
-    M.toast({html:toastHTML});
-    theHunger();
-}
 
 function startGivenCollector(resource) {
     switch(resource) {
@@ -639,81 +631,39 @@ $('.upgrade-babby').on('click', function() {
 });
 
 $('.collect-worm').on('click', function() {
-    if (babby.number === 0) {
-        const toastHTML = 'You must have babies to collect resources.';
-        M.toast({html:toastHTML});
-        return;
-    }
     collectorStatus.worm ? babby.stopCollecting('worm') : babby.startCollecting('worm');
     const check = collectorStatus.worm ? '[x]' : '[]';
-    $('.collect-worm').text(check);
-    const toastHTML = 'You now have a baby collecting worms!';
-    M.toast({html:toastHTML});    
+    $('.collect-worm').text(check);    
 });
 
 $('.collect-fish').on('click', function() {
-    if (babby.number === 0) {
-        const toastHTML = 'You must have babies to collect resources.';
-        M.toast({html:toastHTML});
-        return;
-    }
     collectorStatus.fish ? babby.stopCollecting('fish') : babby.startCollecting('fish');
     const check = collectorStatus.fish ? '[x]' : '[]';
     $('.collect-fish').text(check);
-    const toastHTML = 'You now have a baby collecting fish!';
-    M.toast({html:toastHTML});
 });
 
 $('.collect-shark').on('click', function() {
-    if (babby.number === 0) {
-        const toastHTML = 'You must have babies to collect resources.';
-        M.toast({html:toastHTML});
-        return;
-    }
     collectorStatus.shark ? babby.stopCollecting('shark') : babby.startCollecting('shark');
     const check = collectorStatus.shark ? '[x]' : '[]';
     $('.collect-shark').text(check);
-    const toastHTML = 'You now have a baby collecting sharks!';
-    M.toast({html:toastHTML});
 });  
 
 $('.collect-dirt').on('click', function() {
-    if (babby.number === 0) {
-        const toastHTML = 'You must have babies to collect resources.';
-        M.toast({html:toastHTML});
-        return;
-    }
     collectorStatus.dirt ? babby.stopCollecting('dirt') : babby.startCollecting('dirt');
     const check = collectorStatus.dirt ? '[x]' : '[]';
     $('.collect-dirt').text(check);
-    const toastHTML = 'You now have a baby collecting dirt!';
-    M.toast({html:toastHTML});
 }); 
 
 $('.collect-rock').on('click', function() {
-    if (babby.number === 0) {
-        const toastHTML = 'You must have babies to collect resources.';
-        M.toast({html:toastHTML});
-        return;
-    }
     collectorStatus.rock ? babby.stopCollecting('rock') : babby.startCollecting('rock');
     const check = collectorStatus.rock ? '[x]' : '[]';
     $('.collect-rock').text(check);
-    const toastHTML = 'You now have a baby collecting rocks!';
-    M.toast({html:toastHTML});
 });
 
 $('.collect-steel').on('click', function() {
-    if (babby.number === 0) {
-        const toastHTML = 'You must have babies to collect resources.';
-        M.toast({html:toastHTML});
-        return;
-    }
     collectorStatus.steel ? babby.stopCollecting('steel') : babby.startCollecting('steel');
     const check = collectorStatus.steel ? '[x]' : '[]';
     $('.collect-steel').text(check);
-    const toastHTML = 'You now have a baby collecting steel!';
-    M.toast({html:toastHTML});
 });
 
 let getWorms;
@@ -887,11 +837,11 @@ Need a text animation to display text (for level ups and other events)
 
 
 */
+
 let hungryBabies;
 
 function theHunger() {
     babby.feed();
-    // console.log('The hunger strikes');
     hungryBabies = setTimeout(() => {
         theHunger();
     }, 5000);
@@ -1163,6 +1113,13 @@ $(".boss").click(function() {
   }
 
 changeStage();
+initialInstruction();
+refreshDisplay(true);
+if (resources.babbies > 0) {
+    const toastHTML = `Your baby${(resources.babbies === 0) ? ' is' : 's are'} hungry! They will eat your food.`;
+    M.toast({html:toastHTML});
+    theHunger();
+}
 
 boss.setMonster();
 
