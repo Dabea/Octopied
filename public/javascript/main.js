@@ -922,6 +922,7 @@ const boss = {
     timer: 30,
     nextStage:function() {
         octoStats.stage++;
+        changeStage();
         boss.setMonster();
     },
     // TODO: Clean Up merge two exp functions
